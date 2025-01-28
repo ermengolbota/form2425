@@ -1,0 +1,9 @@
+:root {
+    --fons: #00aedf;
+    /* Blau Pedralbes */
+}
+
+body {
+    background-color: var(--fons);
+    font-family: Arial, sans-serif;
+}
