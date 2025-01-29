@@ -1,9 +1,62 @@
 :root {
-    --fons: #00aedf;
     /* Blau Pedralbes */
+    --fons: #00aedf;
 }
 
 body {
     background-color: var(--fons);
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#formulari {
+    background-color: white;
+    border-radius: 40px 10px;
+    box-shadow: 5px 5px 5px #000000;
+    padding: 2rem;
+}
+
+#formulari h1 {
+    font-variant: small-caps;
+    color: var(--fons);
+    margin: 2rem;
+}
+
+#formulari label {
+    display: block;
+    color: #555;
+    width: 90%;
+    margin-top: 1rem;
+    padding: .5rem;
+}
+
+#formulari input {
+    display: block;
+    width: 90%;
+    margin: auto;
+    padding: .5rem;
+}
+
+#formulari [type="submit"] {
+    display: block;
+    background-color: var(--fons);
+    font-size: larger;
+    color: white;
+    border-radius: 20px 5px;
+    border: none;
+    padding: 1rem;
+    width: 90%;
+    margin: 2rem auto .5rem auto;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px #000000;
+
+}
+
+#formulari [type="submit"]:hover, #formulari [type="submit"]:focus {
+    background-color: #0077b6;
+    box-shadow: 1px 1px 5px #000000;
+
 }
