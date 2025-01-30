@@ -10,15 +10,36 @@
 </head>
 
 <body>
-    <form id="formulari" action="./action.php" method="post">
+    <form id="informacio" action="http://daw.inspedralbes.cat/form/action.php" method="post">
         <h1>Institut Pedralbes</h1>
-        <label for="idNom">Nom:</label>
-        <input type="text" placeholder="El teu nom" id="idNom" name="nom">
+        <div class="item">
+            <label for="idNom">Nom:</label>
+            <input type="text" placeholder="El teu nom" id="idNom" name="nom">
+        </div>
+        <div class="item">
+            <label for="idEmail">Correu electrònic:</label>
+            <input type="text" placeholder="correu@servidor..." id="idEmail" name="email">
+        </div>
 
-        <label for="idEmail">Correu electrònic</label>
-        <input type="text" placeholder="correu@servidor..." id="idEmail" name="email">
+        <fieldset class="item" id="cicles">
+            <legend>Estudis:</legend>
+            <input type="checkbox" id="idDaw" name="cicles[]" value="DAW">
+            <label for="idDaw">DAW</label>
 
-        <button type="submit">Enviar</button>
+            <input type="checkbox" id="idDam" name="cicles[]" value="DAM">
+            <label for="idDam">DAM</label>
+
+            <input type="checkbox" id="idAsix" name="cicles[]" value="ASIX">
+            <label for="idAsix">ASIX</label>
+
+            <input type="checkbox" id="idSmx" name="cicles[]" value="SMX">
+            <label for="idSmx">SMX</label>
+
+            <input type="checkbox" id="idPfi" name="cicles[]" value="PFI">
+            <label for="idPfi">PFI</label>
+
+        </fieldset>
+        <button type="submit" class="item">Enviar</button>
     </form>
 </body>
 
