@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form id="informacio" action="http://daw.inspedralbes.cat/form/action.php" method="post">
+    <form id="informacio" action="./action2.php" method="post">
         <h1>Institut Pedralbes</h1>
         <div class="item">
             <label for="idNom">Nom:</label>

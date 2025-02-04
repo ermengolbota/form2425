@@ -93,7 +93,10 @@ fieldset {
     flex-wrap: wrap;
     justify-content: center;
     gap: .5rem;
+}
 
+fieldset label {
+    user-select: none;
 }
 
 input[type="checkbox"]+label {
@@ -110,4 +113,14 @@ input[type="checkbox"]:checked+label {
     background-color: var(--fons);
     color: white;
     border-color: var(--fons);
+}
+
+
+.error {
+    color: yellow;
+    background-color: red;
+    font-weight: bold;
+    text-align: center;
+    margin: 0.25em;
+
 }
