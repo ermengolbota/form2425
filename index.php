@@ -1,4 +1,19 @@
 <?php
+
+// Funcions per a la gestió d'arrays utilitzades en el codi
+
+// count per saber la longitud d'un array
+// https://www.w3schools.com/php/func_array_count.asp
+
+// in_array per trobar elements en un array
+// https://www.w3schools.com/php/func_array_in_array.asp
+
+// implode per convertir un array en una cadena
+// https://www.w3schools.com/php/func_string_implode.asp
+// https://www.php.net/manual/es/function.implode.php
+
+
+
 //El següent codi farà que es mostrin sempre els errors i warnings.
 //Això és molt útil per depurar el codi.
 //però mai s'ha de fer en un servidor de producció.
@@ -36,6 +51,9 @@ $nomErr = "";
 $email = "";
 $emailErr = "";
 
+$cicles = "";
+$ciclesErr = "";
+
 //Diferenciem si hem rebut dades per POST (s'ha enviat el formulari),
 //o si s'ha accedit directament a la pàgina sense haver omplert el formulari encara
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -53,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($_POST['email'])) {
-        $emailErr = " -- El correu és obligatori -- ";
+        $emailErr = " El correu és obligatori ";
         $errors++;
     } else {
         $email = clear_input($_POST['email']);
@@ -61,6 +79,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $emailErr = " El correu no té un format vàlid ";
             $errors++;
         }
+    }
+
+
+    if (isset($_POST['cicles']) && count($_POST['cicles']) > 0) {
+        //Si s'ha seleccionat algun cicle, els guardem en una cadena separada per comes
+        $cicles = implode(", ", $_POST['cicles']);
+    } else {
+        //Si no s'ha seleccionat cap cicle, prepraem el missatge d'error
+        $errors++;
+        $ciclesErr = "Com a mínim s'han de seleccionar uns estudis";
     }
 } else {
     //Si no hem rebut dades per POST, no cal fer res previ, simplement mostrar el formulari
@@ -84,8 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($errors == 0) {
         //S'ha enviat el form i no hi ha cap error
     
-        echo "<div id='informacio'><h1>Dades guardades </h1>";
-        echo "<div id='agraiment'><strong>$nom</strong>, moltes gràcies per inscriure't</div>";
+        echo "<div id='informacio'><h1>Dades guardades $cicles</h1>";
+        echo "<p><strong>$nom</strong>, moltes gràcies per inscriure't amb el correu $email</p>";
+        echo "<p>Has seleccionat els estudis de: $cicles</p>";
         echo "<p><a href='./'>Tornar a la pàgina principal</a></p>";
         echo "</div>";
 
@@ -115,21 +144,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" placeholder="correu@servidor..." id="idEmail" name="email" value="<?php echo $email; ?>">
             </div>
 
+            <div class="error"><?php echo $ciclesErr; ?></div>
             <fieldset class="item" id="cicles">
                 <legend>Estudis:</legend>
-                <input type="checkbox" id="idDaw" name="cicles[]" value="DAW">
+                <input type="checkbox" id="idDaw" name="cicles[]" value="DAW" <?php if (isset($_POST['cicles']) && in_array("DAW", $_POST['cicles']))
+                    echo "checked"; ?>>
                 <label for="idDaw">DAW</label>
 
-                <input type="checkbox" id="idDam" name="cicles[]" value="DAM">
+                <input type="checkbox" id="idDam" name="cicles[]" value="DAM" <?php if (isset($_POST['cicles']) && in_array("DAM", $_POST['cicles']))
+                    echo "checked"; ?>>
                 <label for="idDam">DAM</label>
 
-                <input type="checkbox" id="idAsix" name="cicles[]" value="ASIX">
+                <input type="checkbox" id="idAsix" name="cicles[]" value="ASIX" <?php if (isset($_POST['cicles']) && in_array("ASIX", $_POST['cicles']))
+                    echo "checked"; ?>>
                 <label for="idAsix">ASIX</label>
 
-                <input type="checkbox" id="idSmx" name="cicles[]" value="SMX">
+                <input type="checkbox" id="idSmx" name="cicles[]" value="SMX" <?php if (isset($_POST['cicles']) && in_array("SMX", $_POST['cicles']))
+                    echo "checked"; ?>>
                 <label for="idSmx">SMX</label>
 
-                <input type="checkbox" id="idPfi" name="cicles[]" value="PFI">
+                <input type="checkbox" id="idPfi" name="cicles[]" value="PFI" <?php if (isset($_POST['cicles']) && in_array("PFI", $_POST['cicles']))
+                    echo "checked"; ?>>
                 <label for="idPfi">PFI</label>
 
             </fieldset>
