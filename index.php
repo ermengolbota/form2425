@@ -1,4 +1,11 @@
 <?php
+// preparem les variables per a la connexió a la base de dades
+$servername = "localhost";
+$username = "ebota_daw";
+$password = "Ee_0j(pbe^PfaQM/";
+$dbname = "ebota_daw";
+?>
+<?php
 
 
 // Funcions per a la gestió d'arrays utilitzades en el codi
@@ -41,6 +48,22 @@ function clear_input($data)
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
+}
+
+
+function guardarPersona($conn, $nom, $email, $cicles)
+{
+    $sql = "INSERT INTO PERSONES (nom, email, cicles) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        die("Error preparing statement: " . $conn->error);
+    }
+
+    $stmt->bind_param("sss", $nom, $email, $cicles);
+
+    if (!$stmt->execute()) {
+        die("Error executing statement: " . $stmt->error);
+    }
 }
 
 //Inicialitzem les variables a la cadena buida
@@ -112,7 +135,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php
     if ($errors == 0) {
         //S'ha enviat el form i no hi ha cap error
-    
+        //Guardem les dades a la base de dades
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        if ($conn->connect_error) {
+            //Si no es pot connectar, mostrem un missatge d'error i abortem el php
+            // no té sentit continuar sense connexió
+            die("Error en la connexió amb la base de dades: " . $conn->connect_error);
+        }
+
+        guardarPersona($conn, $nom, $email, $cicles);
+
+        //Mostrem un missatge de confirmació
         echo "<div id='informacio'><h1>Dades guardades $cicles</h1>";
         echo "<p><strong>$nom</strong>, moltes gràcies per inscriure't amb el correu $email</p>";
         echo "<p>Has seleccionat els estudis de: $cicles</p>";
@@ -170,6 +204,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             </fieldset>
             <button type="submit" class="item">Enviar</button>
+
+            <a href="llistat.php">Panell de controll</a>
         </form>
 
         <?php

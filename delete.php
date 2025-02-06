@@ -1,10 +1,10 @@
 <?php
 //activem el mostrar errors. NOMÉS PER DESENVOLUPAMENT
-/*
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-*/
+
 // preparem les variables per a la connexió a la base de dades
 $servername = "localhost";
 $username = "ebota_daw";

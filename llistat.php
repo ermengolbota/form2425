@@ -69,13 +69,13 @@ $dbname = "ebota_daw";
             echo "</li>";
         }
         echo "</ul>";
-        echo "</div>";
     } else {
         echo "<h1>No hi ha inscrits</h1>";
     }
-    echo "<div>";
     $conn->close();
-
     ?>
+    <a href="index.php">Portada</a>
+    </div>
+
 
 </body>
