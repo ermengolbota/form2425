@@ -65,6 +65,7 @@ $dbname = "ebota_daw";
         while ($row = $result->fetch_assoc()) {
             echo "<li>";
             echo $row["id"] . " -  " . $row["nom"];
+            echo " - <a href='index.php?id=" . $row["id"] . "' title='editar' >editar</a>";
             echo " - <a href='delete.php?id=" . $row["id"] . "' title='esborrar' >esborrar</a>";
             echo "</li>";
         }
