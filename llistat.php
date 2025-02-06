@@ -10,9 +10,6 @@ $username = "ebota_daw";
 $password = "Ee_0j(pbe^PfaQM/";
 $dbname = "ebota_daw";
 
-// Creem la connexió
-$conn = new mysqli($servername, $username, $password);
-
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -60,21 +57,23 @@ $conn = new mysqli($servername, $username, $password);
     $result = $stmt->get_result();
 
 
+    echo "<div id='informacio'>";
     if ($result->num_rows > 0) {
-        // output data of each row
-        echo "<div id='informacio'>";
+        // Si hem obtingut algun registre...
         echo "<h1>Llistat d'inscrits</h1>";
         echo "<ul>";
         while ($row = $result->fetch_assoc()) {
             echo "<li>";
-            echo "id: " . $row["id"] . " -  " . $row["nom"];
+            echo $row["id"] . " -  " . $row["nom"];
+            echo " - <a href='delete.php?id=" . $row["id"] . "' title='esborrar' >esborrar</a>";
             echo "</li>";
         }
         echo "</ul>";
         echo "</div>";
     } else {
-        echo "<div id='informacio'><h1>No hi ha inscrits</h1></div>";
+        echo "<h1>No hi ha inscrits</h1>";
     }
+    echo "<div>";
     $conn->close();
 
     ?>

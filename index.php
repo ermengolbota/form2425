@@ -1,5 +1,6 @@
 <?php
 
+
 // Funcions per a la gestió d'arrays utilitzades en el codi
 
 // count per saber la longitud d'un array
