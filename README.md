@@ -6,7 +6,7 @@ Les diverses solucions estan en diverses branques. Podeu canviar de branca des d
   * php, un html més complet i un php senzill per a obtenir les dades
   * php_unic. Un sol fitxer index.php que mostra el formulari i també valida les dades, reomplint la part correcta del formulari i avisant dels errors.
   * php_bd. El php_unic, però connectant-se a un BBDD per a guardar la informació i creant un enllaç per poder esborrar elements
-  * CURD. Versió completa de l'aplicació, però no òptima
+  * CRUD. Versió completa de l'aplicació, però no òptima (CRUD ==> Create, Read, Update, Delete)
     * index.php:
        * Si no rep res --> Mostrar el formulari
        * Si rep una petició POST però falta algun paràmetre --> Comprova els paràmetres i si hi ha error, reomple el formulari amb els camps bons, i avisa del dolent
